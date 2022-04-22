@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StadiumConcert.Migrations
 {
-    public partial class initialDB : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -53,8 +53,7 @@ namespace StadiumConcert.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Tickets_Name",
                 table: "Tickets",
-                column: "Name",
-                unique: true);
+                column: "Name");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace StadiumConcert.Data.Entities
 {
@@ -6,20 +7,24 @@ namespace StadiumConcert.Data.Entities
     {
         public int Id { get; set; }
 
-        public Boolean WasUsed { get; set; }
+        [Display(Name = "¿Fue Usada?")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        public bool WasUsed { get; set; }
 
         [Display(Name = "Documento")]
         [MaxLength(20, ErrorMessage = "El campo {0} debe tener maximo {1} caractéres.")]
-        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
-        public String Document { get; set; }
-        [Display(Name = "Documento")]
-        [MaxLength(50)]
-        [Required(ErrorMessage = "El campo {0} es requerido")]
-        public String Name { get; set; }
+        public String? Document { get; set; }
 
-        public Entrance Entrance { get; set; }
+        [Display(Name = "Nombre")]
+        [MaxLength(50, ErrorMessage = "El campo {0} debe tener maximo {1} caractéres.")]
+   
+        public String? Name { get; set; }
 
-        public DateTime Date { get; set; }
+        [JsonIgnore]
+        public Entrance? Entrance { get; set; }
+
+        public DateTime? Date { get; set; }
+
 
 
     }

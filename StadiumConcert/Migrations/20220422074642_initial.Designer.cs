@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StadiumConcert.Data;
 
@@ -11,9 +12,10 @@ using StadiumConcert.Data;
 namespace StadiumConcert.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220422074642_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,17 +50,19 @@ namespace StadiumConcert.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime?>("Date")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Document")
+                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int?>("EntranceId")
+                    b.Property<int>("EntranceId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -77,15 +81,12 @@ namespace StadiumConcert.Migrations
             modelBuilder.Entity("StadiumConcert.Data.Entities.Ticket", b =>
                 {
                     b.HasOne("StadiumConcert.Data.Entities.Entrance", "Entrance")
-                        .WithMany("Tickets")
-                        .HasForeignKey("EntranceId");
+                        .WithMany()
+                        .HasForeignKey("EntranceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Entrance");
-                });
-
-            modelBuilder.Entity("StadiumConcert.Data.Entities.Entrance", b =>
-                {
-                    b.Navigation("Tickets");
                 });
 #pragma warning restore 612, 618
         }
