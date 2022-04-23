@@ -7,7 +7,7 @@ namespace StadiumConcert.Data.Entities
     {
         public int Id { get; set; }
 
-        [Display(Name = "¿Fue Usada?")]
+        [Display(Name = "¿Fue Usadala boleta?")]
         [Required(ErrorMessage = "El campo {0} es obligatorio.")]
         public bool WasUsed { get; set; }
 

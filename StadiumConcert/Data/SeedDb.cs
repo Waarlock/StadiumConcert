@@ -15,7 +15,7 @@ namespace StadiumConcert.Data
 
         public async Task SeedAsync()
         {
-            // await _context.Database.EnsureCreatedAsync();
+  
             _context.Database.Migrate();
             await CheckTicketsAsync();
             await CheckEntrancesAsync();
@@ -52,19 +52,6 @@ namespace StadiumConcert.Data
 
 
             }
-
-
-
-            //if (!_context.Tickets.Any())
-            //{
-            //    int k = 0;
-
-            //    for (k = 0; k <= 5000; k++)
-            //    {
-            //        _context.Tickets.Add(new Ticket { Id = k });
-            //    }
-            //    await _context.SaveChangesAsync();
-            //}
         }
     }
 }
