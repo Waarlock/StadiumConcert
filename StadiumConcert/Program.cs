@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using StadiumConcert.Data;
+using StadiumConcert.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,8 @@ builder.Services.AddDbContext<DataContext>(o =>
 });
 
 builder.Services.AddTransient<SeedDb>();
+builder.Services.AddScoped<ICombosHelper, CombosHelper>();
+
 
 var app = builder.Build();
 
